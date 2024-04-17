@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javolin - Digital wallet that works for you</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("bg_section.png");
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+      }
+
+      /* Ensure the text and other elements are visible on the gradient */
+      .text-on-image {
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Adjust your logo as necessary */
+      .logo {
+        height: 70px; /* Adjust the height as necessary */
+        width: auto;
+      }
+
+      /* Keyframes for slide-in animation */
+      @keyframes slideInFromLeft {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      /* Apply the animation to the heading */
+      .slide-in {
+        animation: slideInFromLeft 1.5s ease-in-out forwards;
+      }
+
+      .footer {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+        color: white; /* Adjust color if necessary */
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Optional text shadow for better readability */
+        font-size: 0.875rem; /* Optional: Sets the font size */
+        padding: 1rem 0; /* Adjust padding as needed */
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center w-full h-screen text-on-image">
+    <div class="text-center p-4">
+      <!-- Replace this img tag's src with the actual path to your logo -->
+      <img src="jav_logo.png" alt="Logo" class="logo mb-6 mx-auto" />
+
+      <!-- Add the slide-in class to apply the animation -->
+      <h1 class="text-9xl font-semibold mb-4 font-['Satoshi'] slide-in">
+        Site Being Upgraded
+      </h1>
+    </div>
+    <div class="footer text-base">
+      &copy; 2024 Javolin Group LLC. All rights reserved.
+    </div>
+  </body>
+</html>
