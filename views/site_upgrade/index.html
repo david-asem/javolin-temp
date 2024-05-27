@@ -91,7 +91,7 @@
   </head>
   <body class="flex items-center justify-center w-full h-screen text-on-image">
     <!-- Background video -->
-    <video id="bg-video" autoplay loop playsinline>
+    <video id="bg-video" autoplay loop muted playsinline>
       <source src="JAV_VID.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -147,9 +147,9 @@
           .play()
           .then(() => {
             // Video started playing
-            heroVideo.muted = false; // Remove this line if you want to start with sound off
-            muteIcon.classList.remove("fa-volume-mute");
-            muteIcon.classList.add("fa-volume-up");
+            heroVideo.muted = true; // Initially muted to comply with autoplay policies
+            muteIcon.classList.remove("fa-volume-up");
+            muteIcon.classList.add("fa-volume-mute");
           })
           .catch((error) => {
             // Autoplay was prevented
@@ -179,6 +179,15 @@
             muteIcon.classList.remove("fa-volume-up");
             muteIcon.classList.add("fa-volume-mute");
           } else {
+            muteIcon.classList.remove("fa-volume-mute");
+            muteIcon.classList.add("fa-volume-up");
+          }
+        });
+
+        // Unmute the video when user clicks anywhere on the page
+        document.body.addEventListener("click", function () {
+          if (heroVideo.muted) {
+            heroVideo.muted = false;
             muteIcon.classList.remove("fa-volume-mute");
             muteIcon.classList.add("fa-volume-up");
           }
