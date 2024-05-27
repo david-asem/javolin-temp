@@ -87,11 +87,56 @@
         font-size: 0.875rem; /* Optional: Sets the font size */
         padding: 1rem 0; /* Adjust padding as needed */
       }
+
+      /* Media Queries for smaller screens */
+      @media (max-width: 768px) {
+        #bg-video {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+
+        #announcement {
+          font-size: 2.5rem;
+        }
+
+        .logo {
+          height: 50px;
+          top: 10px;
+          left: 10px;
+        }
+
+        .footer {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #bg-video {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+
+        #announcement {
+          font-size: 1.5rem;
+        }
+
+        .logo {
+          height: 40px;
+          top: 5px;
+          left: 5px;
+        }
+
+        .footer {
+          font-size: 0.65rem;
+        }
+      }
     </style>
   </head>
   <body class="flex items-center justify-center w-full h-screen text-on-image">
     <!-- Background video -->
-    <video id="bg-video" autoplay loop muted playsinline>
+    <video id="bg-video" loop muted autoplay playsinline>
       <source src="JAV_VID.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -109,102 +154,16 @@
 
     <div class="absolute bottom-1 left-8 p-4">
       <!-- Add the slide-in class to apply the animation -->
-      <h1 id="announcement" class="text-4xl font-semibold slide-in">
-        New Site Coming Soon!!
+      <h1
+        id="announcement"
+        class="text-3xl font-semibold slide-in mb-10 lg:mb-4"
+      >
+        New Site Coming Soon..
       </h1>
-    </div>
-
-    <!-- Control icons -->
-    <div id="controls" class="absolute bottom-4 right-4 flex space-x-4 z-10">
-      <i
-        id="playPauseIcon"
-        class="fas fa-pause text-white text-2xl h-12 w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"
-      ></i>
-      <i
-        id="muteIcon"
-        class="fas fa-volume-mute text-white text-2xl h-12 w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"
-      ></i>
     </div>
 
     <div class="footer text-base">
       &copy; 2024 Javolin Group LLC. All rights reserved.
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const heroVideo = document.getElementById("bg-video");
-        const fallbackImage = document.getElementById("videoFallback");
-        const playPauseIcon = document.getElementById("playPauseIcon");
-        const muteIcon = document.getElementById("muteIcon");
-
-        // Check if the video is playing and fallback if necessary
-        heroVideo.addEventListener("error", function () {
-          fallbackImage.style.display = "block";
-        });
-
-        // Try to play the video after the page loads
-        heroVideo
-          .play()
-          .then(() => {
-            // Video started playing
-            heroVideo.muted = true; // Initially muted to comply with autoplay policies
-            muteIcon.classList.remove("fa-volume-up");
-            muteIcon.classList.add("fa-volume-mute");
-          })
-          .catch((error) => {
-            // Autoplay was prevented
-            console.log("Autoplay was prevented:", error);
-            heroVideo.muted = true;
-            muteIcon.classList.remove("fa-volume-up");
-            muteIcon.classList.add("fa-volume-mute");
-          });
-
-        // Play/Pause icon event listener
-        playPauseIcon.addEventListener("click", function () {
-          if (heroVideo.paused) {
-            heroVideo.play();
-            playPauseIcon.classList.remove("fa-play");
-            playPauseIcon.classList.add("fa-pause");
-          } else {
-            heroVideo.pause();
-            playPauseIcon.classList.remove("fa-pause");
-            playPauseIcon.classList.add("fa-play");
-          }
-        });
-
-        // Mute/Unmute icon event listener
-        muteIcon.addEventListener("click", function () {
-          heroVideo.muted = !heroVideo.muted;
-          if (heroVideo.muted) {
-            muteIcon.classList.remove("fa-volume-up");
-            muteIcon.classList.add("fa-volume-mute");
-          } else {
-            muteIcon.classList.remove("fa-volume-mute");
-            muteIcon.classList.add("fa-volume-up");
-          }
-        });
-
-        // Unmute the video when user clicks anywhere on the page
-        document.body.addEventListener("click", function () {
-          if (heroVideo.muted) {
-            heroVideo.muted = false;
-            muteIcon.classList.remove("fa-volume-mute");
-            muteIcon.classList.add("fa-volume-up");
-          }
-        });
-      });
-
-      // Function to enable sound on user interaction
-      function enableSound() {
-        const heroVideo = document.getElementById("bg-video");
-        const muteIcon = document.getElementById("muteIcon");
-
-        if (heroVideo.muted) {
-          heroVideo.muted = false;
-          muteIcon.classList.remove("fa-volume-mute");
-          muteIcon.classList.add("fa-volume-up");
-        }
-      }
-    </script>
   </body>
 </html>
