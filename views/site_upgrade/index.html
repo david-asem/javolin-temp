@@ -184,22 +184,6 @@
         const playPauseIcon = document.getElementById("playPauseIcon");
         const muteIcon = document.getElementById("muteIcon");
 
-        // Dispatch mouse events to simulate a user click
-        function simulateMouseEvents(element) {
-          ["mousedown", "mouseup", "click"].forEach((eventType) => {
-            const event = new MouseEvent(eventType, {
-              view: window,
-              bubbles: true,
-              cancelable: true,
-            });
-            element.dispatchEvent(event);
-          });
-        }
-
-        // Programmatically click play and mute buttons
-        simulateMouseEvents(playPauseIcon);
-        simulateMouseEvents(muteIcon);
-
         // Play/Pause icon event listener
         playPauseIcon.addEventListener("click", function () {
           if (heroVideo.paused) {
@@ -224,6 +208,10 @@
             muteIcon.classList.add("fa-volume-up");
           }
         });
+
+        // Programmatically click play and mute buttons
+        playPauseIcon.click();
+        muteIcon.click();
 
         // Set initial icons
         if (heroVideo.muted) {
