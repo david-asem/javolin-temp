@@ -136,7 +136,7 @@
   </head>
   <body class="flex items-center justify-center w-full h-screen text-on-image">
     <!-- Background video -->
-    <video id="bg-video" autoplay loop muted playsinline>
+    <video id="bg-video" loop muted autoplay playsinline>
       <source src="JAV_VID.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -184,6 +184,22 @@
         const playPauseIcon = document.getElementById("playPauseIcon");
         const muteIcon = document.getElementById("muteIcon");
 
+        // Dispatch mouse events to simulate a user click
+        function simulateMouseEvents(element) {
+          ["mousedown", "mouseup", "click"].forEach((eventType) => {
+            const event = new MouseEvent(eventType, {
+              view: window,
+              bubbles: true,
+              cancelable: true,
+            });
+            element.dispatchEvent(event);
+          });
+        }
+
+        // Programmatically click play and mute buttons
+        simulateMouseEvents(playPauseIcon);
+        simulateMouseEvents(muteIcon);
+
         // Play/Pause icon event listener
         playPauseIcon.addEventListener("click", function () {
           if (heroVideo.paused) {
@@ -208,20 +224,6 @@
             muteIcon.classList.add("fa-volume-up");
           }
         });
-
-        // Function to simulate user click
-        function simulateUserClick(element) {
-          const event = new MouseEvent("click", {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-          });
-          element.dispatchEvent(event);
-        }
-
-        // Programmatically click play and mute buttons
-        simulateUserClick(playPauseIcon);
-        simulateUserClick(muteIcon);
 
         // Set initial icons
         if (heroVideo.muted) {
